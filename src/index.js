@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Marques from './components/Marques';
-import NotFound from './components/NotFound';
 import Cars from './components/Cars';
 import NewCar from './components/NewCar';
 import Marque from './components/Marque';
@@ -30,20 +29,19 @@ const router = createBrowserRouter([
   },
   {
     path:'/cars',
-    element: <Cars />, 
+    element: <Cars />,
+    children: [
+      {
+        path: "/cars/new",
+        element: <NewCar />
+      },
+      {
+        path:'/cars/:model',
+        element: <Car />
+      },
+    ]
   },
-  {
-    path:'/cars/:model',
-    element: <Car />
-  },
-  {
-    path: "/cars/new",
-    element: <NewCar />
-  }
-
 ])
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
